@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Didact+Gothic&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Главная страница</title>
+
+    </head>
+
+    <body>
+
+        <header>
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="logo fei.png">
+                    </a>
+                </div>
+                <nav class="navigation" id="main-navigation">
+                    <ol>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="index2.html">Новости</a></li>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Помощь</a></li>
+                        <li><a href="#">Вакансии</a></li>
+                        <li><a href="#">Войти</a></li>
+                    </ol>
+                </nav>
+                <button type="button" class="hamburger" aria-label="Открыть меню" aria-expanded="false" aria-controls="main-navigation">☰</button>
+            </div>
+            
+        </header>
+
+
+
+        
+
+        <section class="one">
+            <div class="container">
+                <div class="flex_section">
+                    <h2 style="color: white; margin-bottom: 20px;">Мистара</h2>
+                    <div class="one_flex">
+                        <h1 style="margin-bottom: 15px;">Шепот</h1>
+                        <h1 style="margin-bottom: 15px;">Полумесяца 1.0</h1>
+                        <button class="btn">Ещё</button>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </section>
+        <div class="container_two">
+            <section>
+                <h2>Обновления</h2>
+                <div class="parent">
+                    <a href="#" class="grid-item item1">
+                        <img src="IMG_2.PNG">
+                        <h3 class="item-text">Версия 2.3 Last Echo "Ядовитый плющ...</h3>
+                    </a>
+                    <a href="#" class="grid-item item2">
+                        <img src="IMG_1.PNG">
+                        <h3 class="item-text">Версия 1.0 Mistara "Шепот полумесяца...</h3>
+                    </a>
+                    <a href="#" class="grid-item item3">
+                        <img src="IMG_4.PNG">
+                        <h3 class="item-text">Версия 6.7 Stellar "Сказочная долина...</h3>
+                    </a>
+                    <a href="#" class="grid-item item4">
+                        <img src="IMG_5.PNG">
+                        <h3 class="item-text">FEILONG исполняется 10 лет...</h3>
+                    </a>
+                </div>
+        </div>
+
+
+            <div class="two_flex">
+                
+
+
+            </div>
+        </section>
+
+        <section class="parallax">
+            <div class="parallax-content">
+                <img src="текст.png" alt="text">
+            </div>
+        </section>
+
+
+        <section>
+            <div class="container_two">
+                <section>
+                    <h2>Наша продукция</h2>
+                    <div class="parent_two">
+                    <a href="#" class="grid-item item5">
+                        <img src="IMG_1.PNG">
+                        <h3 class="item-text">Mistara</h3>
+                    </a>
+                   <a href="#" class="grid-item item6">
+                        <img src="IMG_2.PNG">
+                        <h3 class="item-text">Last Echo</h3>
+                    </a>
+                    <a href="#" class="grid-item item7">
+                        <img src="IMG_3.png">
+                        <h3 class="item-text">Eidolon Grid: Dreamwire</h3>
+                    </a>
+                    <a href="#" class="grid-item item8">
+                        <img src="IMG_4.PNG">
+                        <h3 class="item-text">Stellar</h3>
+                    </a>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+
+        <section class="parallax">
+            <div class="parallax-content">
+                <button class="btn_two">Присоединиться к нам</button>
+            </div>
+        </section>
+
+        <footer>
+            <nav class="navigation">
+                <ol>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="index2.html">Новости</a></li>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Помощь</a></li>
+                        <li><a href="#">Вакансии</a></li>
+                    <li><a href="#">Политика конфидициальности</a></li>
+                </ol>
+            </nav>
+            <img src="logo fei.png"> 
+        </footer>
+
+        <script>
+        const header = document.querySelector("header");
+        window.addEventListener("scroll", () => {
+            if (!header) return;
+            if (window.scrollY > 50) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        });
+
+        (function initMobileNav() {
+            const hamburger = document.querySelector("header .hamburger");
+            const nav = document.getElementById("main-navigation");
+            if (!header || !hamburger || !nav) return;
+            function setNavOpen(open) {
+                header.classList.toggle("nav-open", open);
+                hamburger.setAttribute("aria-expanded", String(open));
+                hamburger.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню");
+            }
+            hamburger.addEventListener("click", () => {
+                setNavOpen(!header.classList.contains("nav-open"));
+            });
+            nav.querySelectorAll("a").forEach((link) => {
+                link.addEventListener("click", () => setNavOpen(false));
+            });
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") setNavOpen(false);
+            });
+            window.addEventListener("resize", () => {
+                if (window.matchMedia("(min-width: 481px)").matches) setNavOpen(false);
+            });
+        })();
+        </script>
+
+    </body>
+</html>

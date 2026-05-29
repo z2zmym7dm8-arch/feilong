@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Didact+Gothic&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="style2.css">
+        <title>Новости</title>
+
+    </head>
+
+    <body>
+
+        <header>
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="logo fei.png">
+                    </a>
+                </div>
+                <nav class="navigation" id="main-navigation">
+                    <ol>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="#">Новости</a></li>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Помощь</a></li>
+                        <li><a href="#">Вакансии</a></li>
+                        <li><a href="#">Войти</a></li>
+                    </ol>
+                </nav>
+                <button type="button" class="hamburger" aria-label="Открыть меню" aria-expanded="false" aria-controls="main-navigation">☰</button>
+            </div>
+        </header>
+
+        <section class="parallax">
+            <div class="parallax-content">
+               <h1>Новости</h1>
+            </div>
+        </section>
+
+        <section>
+            <div class="container_two">
+                <div class="section-actions" role="tablist" aria-label="Разделы">
+                    <button class="btn tab-btn active" type="button" data-tab="products" role="tab" aria-selected="true">Продукты</button>
+                    <button class="btn tab-btn" type="button" data-tab="company" role="tab" aria-selected="false">Компания</button>
+                </div>
+
+                <div class="tab-panels">
+                    <div class="tab-panel active" data-panel="products" role="tabpanel">
+                        <div class="parent_two">
+                            <a href="#" class="grid-item item5">
+                                <img src="IMG_1.PNG">
+                                <h3 class="item-text">Версия 1.0 Mistara "Шепот полумесяца...</h3>
+                            </a>
+                           <a href="#" class="grid-item item6">
+                                <img src="IMG_2.PNG">
+                                <h3 class="item-text">Версия 2.3 Last Echo "Ядовитый плющ...</h3>
+                            </a>
+                            <a href="#" class="grid-item item7">
+                                <img src="IMG_3.png">
+                                <h3 class="item-text">Eidolon Grid: Dreamwire новый тип...</h3>
+                            </a>
+                            <a href="#" class="grid-item item8">
+                                <img src="IMG_6.PNG">
+                                <h3 class="item-text">Mistara выйдет 10 декабря...</h3>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="tab-panel" data-panel="company" role="tabpanel" hidden>
+                        <div class="parent">
+                            <a href="#" class="grid-item item1">
+                                <img src="IMG_7.png">
+                                <h3 class="item-text">FEILONG открыл новый офис в Санкт-Петербурге</h3>
+                            </a>
+                            <a href="#" class="grid-item item2">
+                                <img src="IMG_7.png">
+                                <h3 class="item-text">FEILONG презентует новый проект на Gamescom</h3>
+                            </a>
+                            <a href="#" class="grid-item item3">
+                                <img src="IMG_7.png">
+                                <h3 class="item-text">FEILONG анонсирует новый мерч</h3>
+                            </a>
+                            <a href="#" class="grid-item item4">
+                                <img src="IMG_8.PNG">
+                                <h3 class="item-text">FEILONG исполняется 10 лет...</h3>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <div class="container_two">
+                <button class="btn_two">Ещё</button>
+            </div>
+        </section>
+
+        <footer>
+            <nav class="navigation">
+                <ol>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="index2.html">Новости</a></li>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Помощь</a></li>
+                        <li><a href="#">Вакансии</a></li>
+                    <li><a href="#">Политика конфидициальности</a></li>
+                </ol>
+            </nav>
+            <img src="logo fei.png">
+        </footer>
+
+        <script>
+            const header = document.querySelector("header");
+            const parallaxSections = Array.from(document.querySelectorAll(".parallax"));
+
+                function updateHeader() {
+                    if (!header) return;
+                    if (window.scrollY > 50) header.classList.add("scrolled");
+                    else header.classList.remove("scrolled");
+                }
+
+            let rafPending = false;
+            function updateParallax() {
+                rafPending = false;
+                const scrollY = window.scrollY || window.pageYOffset;
+                const speed = 0.35;
+                    for (const el of parallaxSections) {
+                        const elTop = el.getBoundingClientRect().top + scrollY;
+                        const y = Math.round((scrollY - elTop) * speed);
+                        el.style.backgroundPosition = `center ${y}px`;
+                    }
+            }
+
+            function onScroll() {
+                updateHeader();
+                if (!rafPending) {
+                    rafPending = true;
+                    requestAnimationFrame(updateParallax);
+                }
+            }
+
+            window.addEventListener("scroll", onScroll, { passive: true });
+            window.addEventListener("resize", () => {
+                updateHeader();
+                updateParallax();
+            });
+
+            // initial paint
+            updateHeader();
+            updateParallax();
+        </script>
+
+        <script>
+        (function initMobileNav() {
+            const hdr = document.querySelector("header");
+            const hamburger = document.querySelector("header .hamburger");
+            const nav = document.getElementById("main-navigation");
+            if (!hdr || !hamburger || !nav) return;
+            function setNavOpen(open) {
+                hdr.classList.toggle("nav-open", open);
+                hamburger.setAttribute("aria-expanded", String(open));
+                hamburger.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню");
+            }
+            hamburger.addEventListener("click", () => {
+                setNavOpen(!hdr.classList.contains("nav-open"));
+            });
+            nav.querySelectorAll("a").forEach((link) => {
+                link.addEventListener("click", () => setNavOpen(false));
+            });
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") setNavOpen(false);
+            });
+            window.addEventListener("resize", () => {
+                if (window.matchMedia("(min-width: 481px)").matches) setNavOpen(false);
+            });
+        })();
+        </script>
+
+        <script>
+            const tabButtons = Array.from(document.querySelectorAll(".tab-btn[data-tab]"));
+            const tabPanels = Array.from(document.querySelectorAll(".tab-panel[data-panel]"));
+
+            function setActiveTab(tabName) {
+                for (const btn of tabButtons) {
+                    const isActive = btn.dataset.tab === tabName;
+                    btn.classList.toggle("active", isActive);
+                    btn.setAttribute("aria-selected", String(isActive));
+                }
+
+                for (const panel of tabPanels) {
+                    const isActive = panel.dataset.panel === tabName;
+                    panel.classList.toggle("active", isActive);
+                    if (isActive) panel.removeAttribute("hidden");
+                    else panel.setAttribute("hidden", "");
+                }
+            }
+
+            for (const btn of tabButtons) {
+                btn.addEventListener("click", () => setActiveTab(btn.dataset.tab));
+            }
+
+            const initial = tabButtons.find((b) => b.classList.contains("active"))?.dataset.tab || tabButtons[0]?.dataset.tab;
+            if (initial) setActiveTab(initial);
+        </script>
+
+    </body>
+</html>
